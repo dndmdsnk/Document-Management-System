@@ -29,8 +29,9 @@ export default function AdminDashboard() {
 
     if (loading) {
         return (
-            <div className="p-6 flex items-center justify-center min-h-[400px]">
-                <div className="text-gray-500">Loading dashboard...</div>
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 relative overflow-hidden flex items-center justify-center">
+                <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+                <div className="inline-block w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
             </div>
         );
     }
@@ -44,11 +45,26 @@ export default function AdminDashboard() {
     }
 
     return (
-        <div className="p-6 space-y-8 max-w-7xl mx-auto">
-            <div className="flex items-center justify-between">
-                <div>
-                    <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-                    <p className="text-gray-500 mt-1">Overview of system metrics and quick actions</p>
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 relative overflow-hidden">
+            <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+            <div className="absolute top-20 left-20 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+            <div className="absolute top-40 right-20 w-96 h-96 bg-cyan-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+            <div className="absolute -bottom-8 left-1/2 w-96 h-96 bg-teal-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+
+            <div className="relative z-10 p-6 space-y-8 max-w-7xl mx-auto">
+            <div className="flex items-center justify-between animate-fade-in-down">
+                <div className="flex items-center gap-4">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-2xl shadow-blue-500/30">
+                        <svg className="w-9 h-9 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 via-blue-800 to-cyan-700 bg-clip-text text-transparent">
+                            Admin Dashboard
+                        </h1>
+                        <p className="text-gray-600 mt-1">Comprehensive system overview and analytics</p>
+                    </div>
                 </div>
             </div>
 
@@ -81,7 +97,7 @@ export default function AdminDashboard() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="card-animated">
+                <div className="card-animated backdrop-blur-sm bg-white/90">
                     <h2 className="text-lg font-semibold text-gray-900 mb-4">Documents by Status</h2>
                     <div className="space-y-3">
                         {Object.entries(stats.statusCounts).map(([status, count]) => (
@@ -93,7 +109,7 @@ export default function AdminDashboard() {
                     </div>
                 </div>
 
-                <div className="card-animated">
+                <div className="card-animated backdrop-blur-sm bg-white/90">
                     <h2 className="text-lg font-semibold text-gray-900 mb-4">Downloads Activity</h2>
                     <div className="space-y-4">
                         <div className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl">
@@ -114,7 +130,7 @@ export default function AdminDashboard() {
                 </div>
             </div>
 
-            <div className="card-animated">
+            <div className="card-animated backdrop-blur-sm bg-white/90">
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">Documents by Division</h2>
                 <div className="overflow-x-auto">
                     <table className="w-full">
@@ -143,7 +159,7 @@ export default function AdminDashboard() {
                 </div>
             </div>
 
-            <div className="card-animated">
+            <div className="card-animated backdrop-blur-sm bg-white/90">
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <QuickActionButton
@@ -165,6 +181,7 @@ export default function AdminDashboard() {
                         description="Track system activity"
                     />
                 </div>
+            </div>
             </div>
         </div>
     );
@@ -191,14 +208,14 @@ function StatCard({
     };
 
     return (
-        <div className="card-animated relative overflow-hidden">
+        <div className="card-animated backdrop-blur-sm bg-white/90 relative overflow-hidden group hover:scale-105">
             <div className="flex items-start justify-between">
                 <div>
-                    <div className="text-sm text-gray-600 mb-1">{title}</div>
+                    <div className="text-sm font-semibold text-gray-600 mb-1">{title}</div>
                     <div className="text-3xl font-bold text-gray-900">{value}</div>
                     {subtitle && <div className="text-xs text-gray-500 mt-1">{subtitle}</div>}
                 </div>
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${colorClasses[color]} flex items-center justify-center text-2xl shadow-lg`}>
+                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${colorClasses[color]} flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform`}>
                     {icon}
                 </div>
             </div>
