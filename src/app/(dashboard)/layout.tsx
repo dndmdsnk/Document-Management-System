@@ -50,6 +50,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   const adminNavItems = [
     { href: "/admin", label: "Dashboard", icon: "📊" },
+    { href: "/admin/documents", label: "Documents", icon: "📄" },
+    { href: "/admin/assignments", label: "Assignments", icon: "✓" },
     { href: "/admin/divisions", label: "Divisions", icon: "🏢" },
     { href: "/admin/users", label: "Users", icon: "👥" },
     { href: "/admin/audit-logs", label: "Audit Logs", icon: "📋" },
