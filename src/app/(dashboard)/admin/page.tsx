@@ -175,10 +175,28 @@ export default function AdminDashboard() {
                         description="Create and manage staff accounts"
                     />
                     <QuickActionButton
+                        href="/admin/reports"
+                        icon="📈"
+                        label="Generate Reports"
+                        description="Export analytics and insights"
+                    />
+                    <QuickActionButton
+                        href="/admin/ocr"
+                        icon="🔍"
+                        label="OCR Management"
+                        description="Process and search documents"
+                    />
+                    <QuickActionButton
                         href="/admin/audit-logs"
                         icon="📋"
                         label="View Audit Logs"
                         description="Track system activity"
+                    />
+                    <QuickActionButton
+                        href="/admin/settings"
+                        icon="⚙️"
+                        label="System Settings"
+                        description="Configure system preferences"
                     />
                 </div>
             </div>

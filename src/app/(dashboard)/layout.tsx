@@ -54,7 +54,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     { href: "/admin/assignments", label: "Assignments", icon: "✓" },
     { href: "/admin/divisions", label: "Divisions", icon: "🏢" },
     { href: "/admin/users", label: "Users", icon: "👥" },
+    { href: "/admin/reports", label: "Reports", icon: "📈" },
+    { href: "/admin/ocr", label: "OCR", icon: "🔍" },
     { href: "/admin/audit-logs", label: "Audit Logs", icon: "📋" },
+    { href: "/admin/settings", label: "Settings", icon: "⚙️" },
   ];
 
   const staffNavItems = [
