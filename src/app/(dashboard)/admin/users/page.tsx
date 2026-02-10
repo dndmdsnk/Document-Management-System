@@ -422,10 +422,15 @@ function UserRow({
                 <div className="relative inline-block">
                     <button
                         onClick={() => setMenuOpen(!menuOpen)}
-                        className="p-2 hover:bg-gray-100 rounded-lg transition-all"
+                        className={`p-2.5 rounded-xl transition-all duration-200 ${
+                            menuOpen
+                                ? "bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg"
+                                : "bg-gray-100 hover:bg-gradient-to-r hover:from-blue-500 hover:to-cyan-500 hover:text-white text-gray-600"
+                        }`}
+                        title="User actions"
                     >
                         <svg
-                            className="w-5 h-5 text-gray-600"
+                            className={`w-5 h-5 transition-transform duration-200 ${menuOpen ? "rotate-90" : ""}`}
                             fill="currentColor"
                             viewBox="0 0 20 20"
                         >
@@ -439,58 +444,111 @@ function UserRow({
                                 className="fixed inset-0 z-10"
                                 onClick={() => setMenuOpen(false)}
                             />
-                            <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-2xl border-2 border-gray-100 z-20 overflow-hidden animate-fade-in-up">
-                                <button
-                                    onClick={() => {
-                                        setMenuOpen(false);
-                                        onResetPassword();
-                                    }}
-                                    className="w-full px-4 py-3 text-left text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors flex items-center gap-2"
-                                >
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
-                                    </svg>
-                                    Reset Password
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        setMenuOpen(false);
-                                        onChangeDivision();
-                                    }}
-                                    className="w-full px-4 py-3 text-left text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors flex items-center gap-2"
-                                >
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                                    </svg>
-                                    Change Division
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        setMenuOpen(false);
-                                        onToggleStatus();
-                                    }}
-                                    className={`w-full px-4 py-3 text-left text-sm font-medium transition-colors flex items-center gap-2 ${
-                                        user.isActive
-                                            ? "text-red-700 hover:bg-red-50"
-                                            : "text-green-700 hover:bg-green-50"
-                                    }`}
-                                >
-                                    {user.isActive ? (
-                                        <>
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                            <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border-2 border-gray-200 z-20 overflow-hidden backdrop-blur-sm animate-fade-in-up">
+                                <div className="p-2">
+                                    <div className="px-3 py-2 border-b border-gray-100">
+                                        <div className="text-xs font-bold text-gray-500 uppercase tracking-wider">User Actions</div>
+                                    </div>
+
+                                    <div className="py-1">
+                                        <button
+                                            onClick={() => {
+                                                setMenuOpen(false);
+                                                onResetPassword();
+                                            }}
+                                            className="w-full px-3 py-2.5 text-left rounded-xl hover:bg-gradient-to-r hover:from-orange-50 hover:to-red-50 transition-all duration-200 group/item flex items-center gap-3"
+                                        >
+                                            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-orange-100 to-red-100 group-hover/item:from-orange-500 group-hover/item:to-red-500 flex items-center justify-center transition-all duration-200">
+                                                <svg className="w-5 h-5 text-orange-600 group-hover/item:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                                                </svg>
+                                            </div>
+                                            <div className="flex-1">
+                                                <div className="text-sm font-semibold text-gray-900 group-hover/item:text-orange-700">Reset Password</div>
+                                                <div className="text-xs text-gray-500 group-hover/item:text-orange-600">Set new credentials</div>
+                                            </div>
+                                            <svg className="w-4 h-4 text-gray-400 group-hover/item:text-orange-600 transition-all group-hover/item:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                             </svg>
-                                            Deactivate User
-                                        </>
-                                    ) : (
-                                        <>
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </button>
+
+                                        <button
+                                            onClick={() => {
+                                                setMenuOpen(false);
+                                                onChangeDivision();
+                                            }}
+                                            className="w-full px-3 py-2.5 text-left rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 transition-all duration-200 group/item flex items-center gap-3"
+                                        >
+                                            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-100 to-cyan-100 group-hover/item:from-blue-500 group-hover/item:to-cyan-500 flex items-center justify-center transition-all duration-200">
+                                                <svg className="w-5 h-5 text-blue-600 group-hover/item:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                                                </svg>
+                                            </div>
+                                            <div className="flex-1">
+                                                <div className="text-sm font-semibold text-gray-900 group-hover/item:text-blue-700">Change Division</div>
+                                                <div className="text-xs text-gray-500 group-hover/item:text-blue-600">Reassign department</div>
+                                            </div>
+                                            <svg className="w-4 h-4 text-gray-400 group-hover/item:text-blue-600 transition-all group-hover/item:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                             </svg>
-                                            Activate User
-                                        </>
-                                    )}
-                                </button>
+                                        </button>
+                                    </div>
+
+                                    <div className="border-t border-gray-100 my-1"></div>
+
+                                    <div className="py-1">
+                                        <button
+                                            onClick={() => {
+                                                setMenuOpen(false);
+                                                onToggleStatus();
+                                            }}
+                                            className={`w-full px-3 py-2.5 text-left rounded-xl transition-all duration-200 group/item flex items-center gap-3 ${
+                                                user.isActive
+                                                    ? "hover:bg-gradient-to-r hover:from-red-50 hover:to-rose-50"
+                                                    : "hover:bg-gradient-to-r hover:from-green-50 hover:to-emerald-50"
+                                            }`}
+                                        >
+                                            <div className={`w-9 h-9 rounded-lg bg-gradient-to-br flex items-center justify-center transition-all duration-200 ${
+                                                user.isActive
+                                                    ? "from-red-100 to-rose-100 group-hover/item:from-red-500 group-hover/item:to-rose-500"
+                                                    : "from-green-100 to-emerald-100 group-hover/item:from-green-500 group-hover/item:to-emerald-500"
+                                            }`}>
+                                                {user.isActive ? (
+                                                    <svg className="w-5 h-5 text-red-600 group-hover/item:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                                                    </svg>
+                                                ) : (
+                                                    <svg className="w-5 h-5 text-green-600 group-hover/item:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+                                                )}
+                                            </div>
+                                            <div className="flex-1">
+                                                <div className={`text-sm font-semibold ${
+                                                    user.isActive
+                                                        ? "text-gray-900 group-hover/item:text-red-700"
+                                                        : "text-gray-900 group-hover/item:text-green-700"
+                                                }`}>
+                                                    {user.isActive ? "Deactivate User" : "Activate User"}
+                                                </div>
+                                                <div className={`text-xs ${
+                                                    user.isActive
+                                                        ? "text-gray-500 group-hover/item:text-red-600"
+                                                        : "text-gray-500 group-hover/item:text-green-600"
+                                                }`}>
+                                                    {user.isActive ? "Revoke access" : "Grant access"}
+                                                </div>
+                                            </div>
+                                            <svg className={`w-4 h-4 text-gray-400 transition-all group-hover/item:translate-x-1 ${
+                                                user.isActive
+                                                    ? "group-hover/item:text-red-600"
+                                                    : "group-hover/item:text-green-600"
+                                            }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </>
                     )}
